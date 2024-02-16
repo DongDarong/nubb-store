@@ -1,0 +1,203 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+@font-face{
+    font-family: "ariblk";
+    src: url("fonts/ariblk.ttf");
+}
+@font-face{
+    font-family: "AKBALTHOM";
+    src: url("fonts/AKBALTHOM\ TNRB.TTF");
+}
+header{
+    padding: 10px;
+    width: 100%;
+    margin-top: -64px;
+    background-color:#7b7780; 
+    position: fixed;       
+}
+body{
+    background-color: #d8dfe6;
+    
+}
+footer{
+    background-color:#b9cfc8;
+    width: 100%;
+    padding: 10px;
+    margin: 0px;
+}
+.text-nameproduct-copyrith{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.img-nameproduct-copyrith{
+    width:90px;
+}
+.text-nameproduct-copyrith{
+    font-size: 40px;
+    color: darkcyan;
+    padding-top: 20px;
+}
+.text-copyrith{
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:rgba(137, 136, 138, 0.814);
+    padding: 17px;
+}
+
+.logo{
+    width: 50px;
+    padding: 2px;
+    padding-left: 30px;
+}
+
+.HAC{
+    justify-content: right;
+    display: flex;
+    top: 0%;
+    position: absolute;
+    left: 57%;
+       
+}
+.text{
+    padding:25px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    height: 16px;
+    border: 1px;
+    border-style: none;
+    border-color: #134067;    
+}
+.text:hover{ 
+    background-color: #98949c; 
+}
+.wallpapermen-in-children{
+    width: 100%;
+    background-color: #7b92a6;
+    display: flex;
+    margin-top: 4rem;
+}
+.image-children{
+    width: 500px;
+    padding: 40px;
+}
+.textshop-in-children{
+    font-size: 70px;
+    padding: 50px 30px;
+    color: #afb4b9;
+}
+.textchildren-in-children{
+    font-size: 150px;
+    padding: 60px 50px;
+    color: #ffcc00;
+    
+}
+.discont{
+    text-align: center;
+}
+.scroll-image{
+    width: 900px; 
+    height: auto;
+    
+}
+.scroll-container{
+    width: 1434px; 
+      height: 450px; 
+      overflow: auto; 
+      display: flex;
+      border: 3px solid;
+    border-color: #bfdff8;
+    margin: 10px;  
+}
+.roll-product{
+    display: flex;
+    margin: 10px;
+}
+.roll-product{
+    display: flex;
+    margin: 10px;
+}
+.text-girl{
+    background-image: url('/image-grile/girls-image.jpg');
+    width: 80%;
+    height: 500px;
+    margin: 10px auto;
+    background-size: cover;
+    color: #f874d9;
+    border-radius: 5px;
+}
+.text-boys{
+    background-image: url('/image-grile/image-boy.jpg');
+    width: 80%;
+    height: 500px;
+    margin: 10px auto;
+    background-size: cover;
+    color: #74baf8;
+    border-radius: 5px;
+}
+.boysandgirl{
+    text-align: left;
+    padding-top: 10rem;
+    font-size: 10rem;
+    padding-left: 6rem;
+    font-weight: 600;
+}
+.star-rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .star-rating input {
+    display: none;
+    
+  }
+
+  .star-rating label {
+    font-size: 20px;
+    color: #646363;
+    display: inline-block;
+    padding: 1px;
+    cursor: pointer;
+  }
+
+  .star-rating label:before {
+    content: '\2605'; 
+  }
+
+  .star-rating input:checked ~ label {
+    color: #ffcc00; 
+  }
+.text-name-product{
+    font-size: 13px;
+    font-family: 'ariblk';
+    color:#3e4042c5;
+    margin-top: 0px;
+}
+.price-product{
+    font-size: 20px;
+    font-family: 'AKBALTHOM';
+    margin-top: -5px;
+    margin-left: 10px;
+    color: #02232f;
+}
+.img-product{
+    width:300px;
+    border:1px solid#f1f8fe;
+    border-radius: 10px;
+}
+.box-product{
+    border: 2px solid;
+    border-color: #a9b3b7;
+    border-radius: 10px;
+    width: 300px;
+    margin: 24px;
+    padding: 5px;
+    background-color: #26c4f95b;
+    height: 450px;
+    margin-top: 110px;
+}

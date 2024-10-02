@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Chain Welcome Page</title>
+    <link rel="stylesheet" href="style.css">
+       
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loading" id="loading">
+        <img src="https://i.imgur.com/Iv0bPz8.gif" alt="Loading...">
+    </div>
+
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcome-screen">
+        <h1 class="welcome-text">Welcome to Our Food Chain</h1>
+        
+    </div>
+
+    <!-- Home Page Content -->
+    <div class="home-page" id="home-page">
+        <header>
+            <div class="logo">
+                <img src="https://img.freepik.com/premium-vector/beautiful-unique-logo-design-food-restaurant-company_1287271-53813.jpg" alt="Logo" />
+            </div>
+            <div class="title">
+                <h1>សូមស្វាគមន៏មកកាន់ហាងលក់ម្ហូបយើងខ្ញុំ</h1>
+            </div>
+        </header>
+
+        <section class="background-image">
+            <h2>Welcome to Our Menu</h2>
+        </section>
+
+        <section class="dish-container">
+            <div class="dish-item" data-name="Dish 1" data-price="$12" data-description="A delicious fish taco served with fresh ingredients.">
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 1" />
+                <div class="dish-info">
+                    <h3>Fish Taco</h3>
+                    <p>$12</p>
+                </div>
+            </div>
+
+            <div class="dish-item" data-name="Dish 2" data-price="$15" data-description="A classic burger with all the fixings.">
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 2" />
+                <div class="dish-info">
+                    <h3>Burger</h3>
+                    <p>$15</p>
+                </div>
+            </div>
+
+            <div class="dish-item" data-name="Dish 3" data-price="$18" data-description="A hearty pasta dish with a rich sauce.">
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 3" />
+                <div class="dish-info">
+                    <h3>Pasta</h3>
+                    <p>$18</p>
+                </div>
+            </div>
+
+            <div class="dish-item" data-name="Dish 3" data-price="$18" data-description="A hearty pasta dish with a rich sauce.">
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 3" />
+                <div class="dish-info">
+                    <h3>Pasta</h3>
+                    <p>$18</p>
+                </div>
+            </div>
+
+            <div class="dish-item" data-name="Dish 1" data-price="$12" data-description="A delicious fish taco served with fresh ingredients.">
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 1" />
+                <div class="dish-info">
+                    <h3>Fish Taco</h3>
+                    <p>$12</p>
+                </div>
+            </div>
+
+            <div class="dish-item" data-name="Dish 2" data-price="$15" data-description="A classic burger with all the fixings.">
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 2" />
+                <div class="dish-info">
+                    <h3>Burger</h3>
+                    <p>$15</p>
+                </div>
+            </div>
+
+            <div class="dish-item" data-name="Dish 3" data-price="$18" data-description="A hearty pasta dish with a rich sauce.">
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 3" />
+                <div class="dish-info">
+                    <h3>Pasta</h3>
+                    <p>$18</p>
+                </div>
+            </div>
+
+            <div class="dish-item" data-name="Dish 3" data-price="$18" data-description="A hearty pasta dish with a rich sauce.">
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 3" />
+                <div class="dish-info">
+                    <h3>Pasta</h3>
+                    <p>$18</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dish Detail Section -->
+        <div class="dish-detail" id="dish-detail">
+            <h2 id="dish-title"></h2>
+            <p id="dish-price"></p>
+            <p id="dish-description"></p>
+            <div id="dish-images"></div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" />
+                </a>
+                <a href="https://telegram.org" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Telegram_logo.svg" alt="Telegram" />
+                </a>
+            </div>
+            <button onclick="goBack()">Back to Menu</button>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Our Food Chain. All Rights Reserved.</p>
+            <p>Contact us: info@ourfoodchain.com | Phone: (123) 456-7890</p>
+        </footer>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Hide welcome screen after 5 seconds or when the button is clicked
+            setTimeout(hideWelcomeScreen, 5000);
+            const startBtn = document.querySelector('.start-btn');
+            if (startBtn) {
+                startBtn.addEventListener('click', hideWelcomeScreen);
+            }
+        };
+        
+        function showDishDetail(item) {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.style.display = 'flex';  // Show loading animation
+            }
+    
+            // Extract data attributes
+            const title = item.getAttribute('data-name');
+            const price = item.getAttribute('data-price');
+            const description = item.getAttribute('data-description');
+    
+            // Populate dish detail
+            document.getElementById('dish-title').innerText = title || "Dish Title Not Available";
+            document.getElementById('dish-price').innerText = price || "Price Not Available";
+            document.getElementById('dish-description').innerText = description || "Description Not Available";
+    
+            // Clear previous images
+            const imagesContainer = document.getElementById('dish-images');
+            if (imagesContainer) {
+                imagesContainer.innerHTML = '';
+            }
+    
+            // Add images for dish detail
+            for (let i = 1; i <= 3; i++) {
+                const img = document.createElement('img');
+                img.src = "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574"; // Placeholder image
+                img.alt = `${title || "Dish"} Detail Image ${i}`;
+                imagesContainer.appendChild(img);
+            }
+    
+            // Hide the menu and show the detail section
+            const homePage = document.getElementById('home-page');
+            const dishDetail = document.getElementById('dish-detail');
+    
+            if (homePage) homePage.style.display = 'none';
+            if (dishDetail) dishDetail.style.display = 'block';
+    
+            // Hide loading animation
+            if (loading) loading.style.display = 'none';
+        }
+
+        function hideWelcomeScreen() {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const homePage = document.getElementById('home-page');
+            const loading = document.getElementById('loading');
+            
+            if (welcomeScreen) welcomeScreen.style.display = 'none';
+            if (homePage) {
+                homePage.style.display = 'block';
+                loading.style.display = 'none';  // Ensure loading animation is hidden
+            }
+        }
+    
+        // Add event listeners to dish items
+        document.querySelectorAll('.dish-item').forEach(item => {
+            item.addEventListener('click', function() {
+                showDishDetail(this);
+            });
+        });
+    
+        
+    
+        function goBack() {
+            const dishDetail = document.getElementById('dish-detail');
+            const homePage = document.getElementById('home-page');
+            
+            if (dishDetail) dishDetail.style.display = 'none';
+            if (homePage) homePage.style.display = 'block';
+        }
+    </script>
+    
+</body>
+</html>

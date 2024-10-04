@@ -1,5 +1,5 @@
- /* Global Styles */
- * {
+/* Global Styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -109,7 +109,6 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    
     padding: 10px 20px;
     background-color: #333;
     color: white;
@@ -117,7 +116,6 @@ header {
     top: 0;
     z-index: 1000;
     width: 100%;
-    
 }
 
 .logo img {
@@ -132,9 +130,7 @@ header {
 .title h1 {
     font-size: 24px;
     text-align: center;
-   width: 100%;
-    
-    
+    width: 100%;
 }
 
 nav ul {
@@ -197,7 +193,7 @@ nav ul li a:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
     overflow: hidden;
     position: relative;
-    cursor: pointer; /* Added cursor for clickable items */
+    cursor: pointer;
 }
 
 .dish-item:hover {
@@ -233,54 +229,61 @@ nav ul li a:hover {
     color: #27ae60;
 }
 
-/* Dish Detail Section */
-.dish-detail {
-    display: none;
-    padding: 40px 20px;
-    text-align: center;
-    background-color: rgb(84, 7, 7);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin: 20px auto;
-    max-width: 500px;
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
 }
 
-.dish-detail img {
-    width: 150px; /* Adjusted size for detail images */
-    height: 150px;
-    object-fit: cover;
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
     border-radius: 10px;
-    margin: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.modal h2 {
+    margin: 10px 0;
 }
 
 .social-icons {
+    display: flex;
+    justify-content: space-around;
     margin-top: 20px;
 }
 
-.social-icons img {
-    width: 30px;
-    margin: 0 10px;
-}
-
-/* Loading Animation */
-.loading {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.loading img {
-    width: 100px;
-}
-
-/* Footer */
 footer {
     background-color: #333;
     color: white;
@@ -295,24 +298,22 @@ footer p {
     font-size: 14px;
 }
 
-/* Media Queries for Responsiveness */
-@media screen and (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
+/* Media Queries */
+
+/* Small Devices (phones) */
+@media (max-width: 600px) {
+    .welcome-text {
+        font-size: 36px;
     }
 
-    nav ul li {
-        margin-left: 0;
-        margin-bottom: 10px;
+    .start-btn {
+        font-size: 18px;
+        padding: 8px 16px;
     }
 
     .background-image h2 {
-        font-size: 28px;
-    }
-
-    .dish-item img {
-        height: 150px;
+        font-size: 24px;
+        padding: 10px 15px;
     }
 
     .dish-info h3 {
@@ -324,26 +325,52 @@ footer p {
     }
 }
 
-/* Media Queries for Phone (max-width: 480px) */
-@media screen and (max-width: 480px) {
+/* Medium Devices (tablets) */
+@media (min-width: 601px) and (max-width: 1024px) {
     .welcome-text {
-        font-size: 24px;
+        font-size: 40px;
     }
 
     .start-btn {
-        font-size: 14px;
-        padding: 6px 12px;
+        font-size: 19px;
+        padding: 9px 18px;
     }
 
     .background-image h2 {
-        font-size: 24px;
+        font-size: 30px;
+        padding: 12px 20px;
     }
 
     .dish-info h3 {
-        font-size: 16px;
+        font-size: 19px;
     }
 
     .dish-info p {
-        font-size: 14px;
+        font-size: 17px;
+    }
+}
+
+/* Large Devices (desktops) */
+@media (min-width: 1025px) {
+    .welcome-text {
+        font-size: 48px;
+    }
+
+    .start-btn {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+
+    .background-image h2 {
+        font-size: 36px;
+        padding: 15px 25px;
+    }
+
+    .dish-info h3 {
+        font-size: 20px;
+    }
+
+    .dish-info p {
+        font-size: 18px;
     }
 }

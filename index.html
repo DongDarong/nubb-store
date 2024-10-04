@@ -5,205 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Chain Welcome Page</title>
     <link rel="stylesheet" href="style.css">
-       
 </head>
 <body>
-    <!-- Loading Animation -->
-    <div class="loading" id="loading">
-        <img src="https://i.imgur.com/Iv0bPz8.gif" alt="Loading...">
-    </div>
-
     <!-- Welcome Screen -->
     <div class="welcome-screen" id="welcome-screen">
-        <h1 class="welcome-text">Welcome to Our Food Chain</h1>
-        
+        <div class="welcome-text">Welcome to FoodChain</div>
+        <!-- <button class="start-btn" onclick="startExperience()">Get Started</button> -->
     </div>
 
     <!-- Home Page Content -->
     <div class="home-page" id="home-page">
+        <!-- Header -->
         <header>
             <div class="logo">
-                <img src="https://img.freepik.com/premium-vector/beautiful-unique-logo-design-food-restaurant-company_1287271-53813.jpg" alt="Logo" />
+                <img src="https://img.freepik.com/premium-vector/beautiful-unique-food-restaurant-company-logo-design_981150-2156.jpg" alt="FoodChain Logo">
             </div>
             <div class="title">
-                <h1>សូមស្វាគមន៏មកកាន់ហាងលក់ម្ហូបយើងខ្ញុំ</h1>
+                <h1>FoodChain</h1>
             </div>
         </header>
 
-        <section class="background-image">
-            <h2>Welcome to Our Menu</h2>
-        </section>
+        <!-- Background Image -->
+        <div class="background-image">
+            <h2>Delicious Dishes Await!</h2>
+        </div>
 
-        <section class="dish-container">
-            <div class="dish-item" data-name="Dish 1" data-price="$12" data-description="A delicious fish taco served with fresh ingredients.">
-                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 1" />
+        <!-- Dish Container -->
+        <div class="dish-container">
+            <div class="dish-item" onclick="showDishDetails('Spaghetti Bolognese', 12.99, 'Spaghetti, Ground beef, Tomato sauce, Onion, Garlic', 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?cs=srgb&dl=pexels-ash-craig-122861-376464.jpg&fm=jpg')">
+                <img src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?cs=srgb&dl=pexels-ash-craig-122861-376464.jpg&fm=jpg" alt="Spaghetti Bolognese">
                 <div class="dish-info">
-                    <h3>Fish Taco</h3>
-                    <p>$12</p>
+                    <h3>Spaghetti Bolognese</h3>
+                    <p>$12.99</p>
                 </div>
             </div>
 
-            <div class="dish-item" data-name="Dish 2" data-price="$15" data-description="A classic burger with all the fixings.">
-                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 2" />
+            <div class="dish-item" onclick="showDishDetails('Chicken Curry', 10.99, 'Chicken, Curry powder, Coconut milk, Vegetables', 'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?resize=768,574')">
+                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?resize=768,574" alt="Chicken Curry">
                 <div class="dish-info">
-                    <h3>Burger</h3>
-                    <p>$15</p>
+                    <h3>Chicken Curry</h3>
+                    <p>$10.99</p>
                 </div>
             </div>
 
-            <div class="dish-item" data-name="Dish 3" data-price="$18" data-description="A hearty pasta dish with a rich sauce.">
-                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 3" />
+            <div class="dish-item" onclick="showDishDetails('Vegetable Stir Fry', 9.99, 'Mixed vegetables, Soy sauce, Ginger, Garlic', 'https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg')">
+                <img src="https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg" alt="Vegetable Stir Fry">
                 <div class="dish-info">
-                    <h3>Pasta</h3>
-                    <p>$18</p>
+                    <h3>Vegetable Stir Fry</h3>
+                    <p>$9.99</p>
                 </div>
             </div>
+        </div>
 
-            <div class="dish-item" data-name="Dish 3" data-price="$18" data-description="A hearty pasta dish with a rich sauce.">
-                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 3" />
-                <div class="dish-info">
-                    <h3>Pasta</h3>
-                    <p>$18</p>
+        <!-- Modal for Dish Details -->
+        <div id="dish-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <img id="dish-image" src="" alt="Dish Image">
+                <h2 id="dish-name">Dish Name</h2>
+                <p id="dish-price">Price: $0.00</p>
+                <p id="dish-ingredients">Ingredients: </p>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/facebook-new.png" alt="Facebook" width="30"></a>
+                    <a href="https://telegram.org" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/telegram-app.png" alt="Telegram" width="30"></a>
                 </div>
             </div>
-
-            <div class="dish-item" data-name="Dish 1" data-price="$12" data-description="A delicious fish taco served with fresh ingredients.">
-                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 1" />
-                <div class="dish-info">
-                    <h3>Fish Taco</h3>
-                    <p>$12</p>
-                </div>
-            </div>
-
-            <div class="dish-item" data-name="Dish 2" data-price="$15" data-description="A classic burger with all the fixings.">
-                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 2" />
-                <div class="dish-info">
-                    <h3>Burger</h3>
-                    <p>$15</p>
-                </div>
-            </div>
-
-            <div class="dish-item" data-name="Dish 3" data-price="$18" data-description="A hearty pasta dish with a rich sauce.">
-                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 3" />
-                <div class="dish-info">
-                    <h3>Pasta</h3>
-                    <p>$18</p>
-                </div>
-            </div>
-
-            <div class="dish-item" data-name="Dish 3" data-price="$18" data-description="A hearty pasta dish with a rich sauce.">
-                <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574" alt="Dish 3" />
-                <div class="dish-info">
-                    <h3>Pasta</h3>
-                    <p>$18</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Dish Detail Section -->
-        <div class="dish-detail" id="dish-detail">
-            <h2 id="dish-title"></h2>
-            <p id="dish-price"></p>
-            <p id="dish-description"></p>
-            <div id="dish-images"></div>
-            <div class="social-icons">
-                <a href="https://www.facebook.com" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" />
-                </a>
-                <a href="https://telegram.org" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Telegram_logo.svg" alt="Telegram" />
-                </a>
-            </div>
-            <button onclick="goBack()">Back to Menu</button>
         </div>
 
         <!-- Footer -->
         <footer>
-            <p>&copy; 2024 Our Food Chain. All Rights Reserved.</p>
-            <p>Contact us: info@ourfoodchain.com | Phone: (123) 456-7890</p>
+            <p>&copy; 2024 FoodChain. All rights reserved.</p>
         </footer>
     </div>
 
     <script>
-        window.onload = function() {
-            // Hide welcome screen after 5 seconds or when the button is clicked
-            setTimeout(hideWelcomeScreen, 5000);
-            const startBtn = document.querySelector('.start-btn');
-            if (startBtn) {
-                startBtn.addEventListener('click', hideWelcomeScreen);
-            }
-        };
-        
-        function showDishDetail(item) {
-            const loading = document.getElementById('loading');
-            if (loading) {
-                loading.style.display = 'flex';  // Show loading animation
-            }
-    
-            // Extract data attributes
-            const title = item.getAttribute('data-name');
-            const price = item.getAttribute('data-price');
-            const description = item.getAttribute('data-description');
-    
-            // Populate dish detail
-            document.getElementById('dish-title').innerText = title || "Dish Title Not Available";
-            document.getElementById('dish-price').innerText = price || "Price Not Available";
-            document.getElementById('dish-description').innerText = description || "Description Not Available";
-    
-            // Clear previous images
-            const imagesContainer = document.getElementById('dish-images');
-            if (imagesContainer) {
-                imagesContainer.innerHTML = '';
-            }
-    
-            // Add images for dish detail
-            for (let i = 1; i <= 3; i++) {
-                const img = document.createElement('img');
-                img.src = "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Fish-Tacos-1337495.jpg?resize=768,574"; // Placeholder image
-                img.alt = `${title || "Dish"} Detail Image ${i}`;
-                imagesContainer.appendChild(img);
-            }
-    
-            // Hide the menu and show the detail section
-            const homePage = document.getElementById('home-page');
-            const dishDetail = document.getElementById('dish-detail');
-    
-            if (homePage) homePage.style.display = 'none';
-            if (dishDetail) dishDetail.style.display = 'block';
-    
-            // Hide loading animation
-            if (loading) loading.style.display = 'none';
+        // Function to fade out the welcome screen and show the home page
+        function startExperience() {
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+            // Trigger alert when the "Get Started" button is clicked
+            alert("Welcome to FoodChain! Let's start your culinary journey.");
         }
 
-        function hideWelcomeScreen() {
-            const welcomeScreen = document.getElementById('welcome-screen');
-            const homePage = document.getElementById('home-page');
-            const loading = document.getElementById('loading');
-            
-            if (welcomeScreen) welcomeScreen.style.display = 'none';
-            if (homePage) {
-                homePage.style.display = 'block';
-                loading.style.display = 'none';  // Ensure loading animation is hidden
+        // Automatically hide the welcome screen and show the home page after 5 seconds
+        setTimeout(() => {
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+            // Trigger alert when page automatically transitions
+            // alert("You've been redirected to FoodChain's home page.");
+        }, 5000);
+
+        // Function to show dish details in a modal
+        function showDishDetails(name, price, ingredients, image) {
+            document.getElementById('dish-name').innerText = name;
+            document.getElementById('dish-price').innerText = `Price: $${price.toFixed(2)}`;
+            document.getElementById('dish-ingredients').innerText = `Ingredients: ${ingredients}`;
+            document.getElementById('dish-image').src = image;
+            document.getElementById('dish-modal').style.display = 'block';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('dish-modal').style.display = 'none';
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('dish-modal');
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
         }
-    
-        // Add event listeners to dish items
-        document.querySelectorAll('.dish-item').forEach(item => {
-            item.addEventListener('click', function() {
-                showDishDetail(this);
-            });
-        });
-    
-        
-    
-        function goBack() {
-            const dishDetail = document.getElementById('dish-detail');
-            const homePage = document.getElementById('home-page');
-            
-            if (dishDetail) dishDetail.style.display = 'none';
-            if (homePage) homePage.style.display = 'block';
-        }
     </script>
-    
 </body>
 </html>

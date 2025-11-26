@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Been Love Memory R & M</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #0a0a0a;
+            color: #f3f4f6;
+        }
+        h1, h2, .fancy-text {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37; 
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            animation: fadeInUp 1.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Random rotation classes for the polaroid effect */
+        .rotate-left { transform: rotate(-3deg); }
+        .rotate-right { transform: rotate(3deg); }
+        /* Disable hover rotation on mobile to prevent sticky states */
+        @media (min-width: 768px) {
+            .rotate-none-hover:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center relative overflow-x-hidden bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]">
+
+    <audio id="bgMusic" loop>
+        <source src="./image/song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="introScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-neutral-900 text-center px-4 transition-all duration-1000">
+        <div class="border border-yellow-600/30 p-6 md:p-16 rounded-sm shadow-2xl bg-black/50 backdrop-blur-sm max-w-lg w-full">
+            <h1 class="text-3xl md:text-5xl text-yellow-500 mb-8 tracking-widest uppercase border-b pb-4 border-yellow-600/50">
+                Exclusive
+            </h1>
+            
+            <p class="text-gray-400 mb-6 text-base md:text-lg italic">Please identify yourself to proceed.</p>
+
+            <input 
+                type="text" 
+                id="nameInput" 
+                placeholder="Enter Name" 
+                class="w-full bg-transparent border-b-2 border-gray-600 text-white text-center text-xl md:text-2xl py-2 mb-10 focus:outline-none focus:border-yellow-500 transition-colors placeholder-gray-700"
+            >
+
+            <button 
+                onclick="revealSurprise()" 
+                class="group relative inline-flex items-center justify-center w-full md:w-auto overflow-hidden rounded bg-white px-8 py-3 transition-all hover:bg-white active:bg-gray-200">
+                <span class="absolute bottom-0 left-0 mb-9 ml-9 h-48 w-48 -translate-x-full translate-y-full rotate-45 rounded bg-yellow-600 transition-all duration-500 ease-out group-hover:mb-32 group-hover:ml-32 group-hover:translate-x-0"></span>
+                <span class="relative text-black transition-colors duration-300 ease-in-out group-hover:text-white font-bold tracking-widest text-sm md:text-base">
+                    UNLOCK MEMORIES
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div id="surpriseScreen" class="hidden w-full max-w-7xl mx-auto p-4 md:p-8 pt-12">
+        
+        <div class="text-center mb-10 md:mb-16 fade-in-up" style="animation-delay: 0.2s;">
+            <p class="text-yellow-500 tracking-[0.3em] uppercase text-xs md:text-sm mb-2">Welcome Back</p>
+            <h1 class="text-4xl md:text-7xl text-white italic leading-tight">
+                <span id="displayName" class="border-b-2 border-yellow-600 pb-1 break-words"></span>
+            </h1>
+            
+            <p class="mt-4 md:mt-6 text-gray-300 max-w-xl mx-auto font-light text-sm md:text-lg px-2 italic">
+                "In you, I’ve found the love of my life and my closest, truest friend."
+            </p>
+
+            <div class="mt-10 fade-in-up" style="animation-delay: 0.3s;">
+                <p class="text-gray-500 text-xs md:text-sm uppercase tracking-widest mb-4">We have been together for</p>
+                
+                <div class="flex flex-wrap justify-center gap-3 md:gap-6">
+                    <div class="bg-white/5 border border-yellow-500/20 p-3 md:p-4 rounded-lg min-w-[80px] md:min-w-[100px] backdrop-blur-sm">
+                        <span id="years" class="block text-2xl md:text-4xl font-bold text-yellow-500 fancy-text">0</span>
+                        <span class="text-xs md:text-sm text-gray-400 uppercase">Years</span>
+                    </div>
+                    <div class="bg-white/5 border border-yellow-500/20 p-3 md:p-4 rounded-lg min-w-[80px] md:min-w-[100px] backdrop-blur-sm">
+                        <span id="months" class="block text-2xl md:text-4xl font-bold text-yellow-500 fancy-text">0</span>
+                        <span class="text-xs md:text-sm text-gray-400 uppercase">Months</span>
+                    </div>
+                    <div class="bg-white/5 border border-yellow-500/20 p-3 md:p-4 rounded-lg min-w-[80px] md:min-w-[100px] backdrop-blur-sm">
+                        <span id="days" class="block text-2xl md:text-4xl font-bold text-yellow-500 fancy-text">0</span>
+                        <span class="text-xs md:text-sm text-gray-400 uppercase">Days</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mt-3">
+                    <div class="text-center">
+                        <span id="hours" class="font-bold text-white text-lg md:text-xl">00</span>
+                        <span class="text-[10px] md:text-xs text-gray-500 uppercase">Hr</span>
+                    </div>
+                    <span class="text-yellow-500 text-xl md:text-2xl">:</span>
+                    <div class="text-center">
+                        <span id="minutes" class="font-bold text-white text-lg md:text-xl">00</span>
+                        <span class="text-[10px] md:text-xs text-gray-500 uppercase">Min</span>
+                    </div>
+                    <span class="text-yellow-500 text-xl md:text-2xl">:</span>
+                    <div class="text-center">
+                        <span id="seconds" class="font-bold text-white text-lg md:text-xl">00</span>
+                        <span class="text-[10px] md:text-xs text-gray-500 uppercase">Sec</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 mb-2 fade-in-up" style="animation-delay: 0.5s;">
+                <div class="h-px w-24 bg-yellow-600/50 mx-auto mb-6"></div>
+                <p class="text-white/90 text-lg md:text-xl max-w-2xl mx-auto font-serif italic leading-relaxed">
+                    "I didn't fall in love with you. I walked into love with you, with my eyes wide open..."
+                </p>
+                <div class="h-px w-24 bg-yellow-600/50 mx-auto mt-6"></div>
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-12 pb-20">
+            <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform rotate-left rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 0.4s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/1.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+                <div class="text-gray-800 text-center mt-4 font-handwriting font-bold text-lg md:text-xl handwriting-font">The Beginning</div>
+            </div>
+            
+            <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform rotate-right rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 0.6s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/2.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+                <div class="text-gray-800 text-center mt-4 font-handwriting font-bold text-lg md:text-xl handwriting-font">Good Times</div>
+            </div>
+
+            <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform -rotate-2 rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 0.8s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/3.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+                <div class="text-gray-800 text-center mt-4 font-handwriting font-bold text-lg md:text-xl handwriting-font">Unforgettable</div>
+            </div>
+
+            <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform rotate-3 rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 1.0s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/4.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+                <div class="text-gray-800 text-center mt-4 font-handwriting font-bold text-lg md:text-xl handwriting-font">Adventure</div>
+            </div>
+
+            <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform rotate-left rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 1.2s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/5.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+            </div>
+
+            <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform rotate-right rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 1.4s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/6.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+            </div>
+            
+            <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform rotate-1 rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 1.6s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/7.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+            </div>
+
+            <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform -rotate-1 rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 1.8s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/8.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+            </div>
+
+            <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform rotate-2 rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 2.0s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/9.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+            </div>
+
+             <div class="bg-white p-3 md:p-4 pb-12 md:pb-16 shadow-2xl transform -rotate-2 rotate-none-hover transition duration-500 cursor-pointer fade-in-up" style="animation-delay: 2.2s;">
+                <div class="overflow-hidden bg-gray-200 h-56 md:h-64">
+                    <img src="./image/10.jpg" class="w-full h-full object-cover filter sepia-[.3] hover:sepia-0 transition">
+                </div>
+                <div class="text-gray-800 text-center mt-4 font-handwriting font-bold text-lg md:text-xl handwriting-font">Forever</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        //  CHANGE YOUR START DATE HERE
+        // ==========================================
+        const startDate = new Date(2025, 3, 9); // Currently set to Apr 9, 2025
+        // ==========================================
+
+        function updateTimer() {
+            const now = new Date();
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            document.getElementById('years').innerText = years;
+            document.getElementById('months').innerText = months;
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        function revealSurprise() {
+            const nameInput = document.getElementById('nameInput');
+            const name = nameInput.value.trim();
+            const introScreen = document.getElementById('introScreen');
+            const surpriseScreen = document.getElementById('surpriseScreen');
+            const displayName = document.getElementById('displayName');
+            const music = document.getElementById('bgMusic');
+
+            if (name === "") {
+                nameInput.classList.add('border-red-500');
+                setTimeout(() => nameInput.classList.remove('border-red-500'), 500);
+                return;
+            }
+
+            displayName.innerText = name;
+            
+            // Fade out intro
+            introScreen.style.opacity = '0';
+            setTimeout(() => {
+                introScreen.classList.add('hidden');
+                surpriseScreen.classList.remove('hidden');
+            }, 1000);
+
+            // Play Music
+            music.volume = 0.5;
+            music.play().catch(console.error);
+
+            // Gold and Silver Confetti
+            fireClassyConfetti();
+        }
+
+        function fireClassyConfetti() {
+            const duration = 3000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 4,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#FFD700', '#C0C0C0', '#ffffff'] 
+                });
+                confetti({
+                    particleCount: 4,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#FFD700', '#C0C0C0', '#ffffff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
+</html>
